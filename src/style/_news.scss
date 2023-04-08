@@ -1,0 +1,272 @@
+.news {
+  padding-top: 171px;
+  padding-bottom: 179px;
+  &__content {
+    width: 100%;
+    max-width: 721px;
+    padding-right: 15px;
+    &-box {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 70px;
+    }
+    &-title {
+      display: block;
+      margin-bottom: 25px;
+      font-size: 50px;
+      font-weight: 400;
+      line-height: 59px;
+    }
+    &-desc {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 150%;
+      margin-inline-start: 2px;
+      color: var(--grey-dark);
+    }
+    &-link {
+      flex-direction: row-reverse;
+      margin-top: 9px;
+      & span {
+        margin-right: 0;
+        margin-left: 17px;
+      }
+    }
+  }
+  &__list {
+    @include reset(li);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(415px, 1fr));
+    gap: 39px 65px;
+    margin-right: 25px;
+  }
+  &__card {
+    position: relative;
+    padding-top: 219px;
+    // filter: drop-shadow(0px 40px 80px rgba(0, 0, 0, 0.05));
+    &-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 45px 0 0 0;
+      @include block-size(100%, 80%);
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    &-date {
+      position: absolute;
+      top: 64px;
+      right: 0;
+      width: 0;
+      & time {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        left: 50%;
+        @include block-size(50px, 97px);
+        padding: 19px 0;
+        border-radius: 15px;
+        background-color: var(--white);
+        box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.06);
+        transform: translateX(-50%);
+        & span.day {
+          padding-top: 3px;
+          margin-bottom: 14px;
+          font-size: 20px;
+          font-weight: 900;
+        }
+        & span.month {
+          font-size: 10px;
+          font-weight: 300;
+        }
+      }
+    }
+    &-content {
+      position: relative;
+      overflow: hidden;
+      min-height: 146px;
+      padding: 24px 55px 25px 30px;
+      border-radius: 0 0 45px 0;
+      background-image: linear-gradient(to right, var(--white) 63%, #0000 10%),
+        linear-gradient(to top, var(--white) 70%, #0000 10%);
+    }
+    &-title,
+    &-desc {
+      position: relative;
+      z-index: 2;
+    }
+    &-title {
+      display: block;
+      width: 100%;
+      max-width: 265px;
+      margin-bottom: 9px;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 128%;
+    }
+    &-desc {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+      font-size: 14px;
+      line-height: 150%;
+    }
+    &-link {
+      position: relative;
+      @include reset(link);
+      @include block-size(43px);
+      background-color: var(--black);
+      z-index: 2;
+      @include transition(opacity, 1);
+      &:hover,
+      &:focus,
+      &:active {
+        opacity: 0.8;
+      }
+      &,
+      &Box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+      }
+      &Box {
+        position: absolute;
+        top: 14px;
+        right: 25px;
+        @include block-size(67px);
+        background-color: var(--white);
+        &::after,
+        &::before {
+          content: '';
+          position: absolute;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        &::before {
+          bottom: 23px;
+          left: 49%;
+          @include block-size(94px, 34px);
+          background-image: url('../img/news/wave.svg');
+          transform: translateX(-50%);
+        }
+        &::after {
+          bottom: -64px;
+          left: 138%;
+          @include block-size(415px, 146px);
+          background-image: url('../img/news/wave-2.svg');
+          transform: translateX(-100%);
+        }
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    padding-top: 120px;
+    padding-bottom: 119px;
+    &__content {
+      padding-right: 0;
+      padding-bottom: 31px;
+      &-box {
+        flex-direction: column;
+        padding-bottom: 39px;
+      }
+      &-title {
+        margin-bottom: 21px;
+        font-size: 30px;
+        line-height: 35px;
+      }
+      &-desc {
+        font-size: 15px;
+      }
+      &-link {
+        flex-direction: row;
+        margin-top: 0;
+        & span {
+          margin-right: 15px;
+          margin-left: 0;
+        }
+      }
+    }
+    &__list {
+      grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
+      gap: 19px;
+    }
+    &__card {
+      padding-top: 151px;
+      &:first-child {
+        & > .news__card-background {
+          background-image: url('../img/news/375/1.png') !important;
+        }
+      }
+      &:nth-child(2) {
+        & > .news__card-background {
+          background-image: url('../img/news/375/2.png') !important;
+        }
+      }
+      &:nth-child(3) {
+        & > .news__card-background {
+          background-image: url('../img/news/375/3.png') !important;
+        }
+      }
+      &:nth-child(n + 4) {
+        display: none;
+      }
+      &-date {
+        top: 53px;
+        & time {
+          @include block-size(38px, 76px);
+          padding-left: 1px;
+          & span.day {
+            padding-top: 1px;
+            margin-bottom: 3px;
+            font-size: 18px;
+          }
+          & span.month {
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 26px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+      &-content {
+        min-height: 143px;
+        padding: 20px;
+      }
+      &-title {
+        max-width: 225px;
+        line-height: 100%;
+      }
+      &-desc {
+        white-space: initial;
+        overflow: initial;
+      }
+      &-link {
+        @include block-size(32px);
+        &Box {
+          top: 9px;
+          right: 22px;
+          @include block-size(55px);
+          &::before {
+            bottom: 17px;
+            left: 50%;
+            @include block-size(79px, 31px);
+          }
+          &:after {
+            bottom: -63px;
+            left: 142%;
+            @include block-size(324px, 143px);
+          }
+        }
+      }
+    }
+  }
+}

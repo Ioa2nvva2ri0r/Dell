@@ -1,0 +1,41 @@
+@mixin property($props) {
+  @each $prop, $value in $props {
+    #{$prop}: $value;
+  }
+}
+
+@mixin transition($property, $value: none, $duration: 0.4s) {
+  @if $value != none {
+    #{$property}: $value;
+  }
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: ease-in-out;
+}
+
+@mixin transitions($property, $props: none, $duration: 0.4s) {
+  @if $props != none {
+    @include property($props);
+  }
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: ease-in-out;
+}
+
+@mixin animation($props-from, $props-to, $duration: 0.4s) {
+  $animation-name: animation-#{unique-id()};
+
+  @keyframes #{$animation-name} {
+    from {
+      @include property($props-from);
+    }
+    to {
+      @include property($props-to);
+    }
+  }
+
+  animation-name: $animation-name;
+  animation-duration: $duration;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}

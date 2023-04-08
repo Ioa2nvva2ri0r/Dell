@@ -1,0 +1,200 @@
+.catalog {
+  padding-top: 164px;
+  padding-bottom: 180px;
+  &__list {
+    @include reset(li);
+    counter-reset: number;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 40px;
+  }
+  &__item {
+    min-height: 371px;
+    &:first-child {
+      padding-right: 50px;
+    }
+    &:not(:first-child) {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 10px 40px 10px;
+      border-radius: 20px;
+      &:nth-child(odd) {
+        background-color: var(--grey-darkened);
+      }
+      &:nth-child(even) {
+        background-color: var(--grey-light);
+      }
+      &::after {
+        position: absolute;
+        counter-increment: number;
+        content: counter(number, decimal-leading-zero);
+        top: 51px;
+        left: 40px;
+        z-index: 5;
+        font-size: 25px;
+        font-weight: 100;
+      }
+    }
+  }
+  &__title {
+    display: block;
+    margin-bottom: 29px;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 50px;
+  }
+  &__desc {
+    margin: 0 0 46px 0;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 150%;
+    color: var(--grey-dark);
+  }
+  &__product {
+    &-img {
+      @include picture(100%);
+      position: relative;
+      z-index: 1;
+      &-1 {
+        top: -20px;
+      }
+      &-2 {
+        top: -32px;
+        left: 28px;
+      }
+      &-3,
+      &-4 {
+        top: -37px;
+      }
+      &-5 {
+        top: -3px;
+        left: 29px;
+      }
+    }
+    &-desc {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 10px 30px 0 30px;
+    }
+    &-count {
+      margin-bottom: 5px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 24px;
+      color: var(--grey-dark);
+    }
+    &-name {
+      @include reset(link);
+      font-size: 25px;
+      font-weight: 400;
+      line-height: 150%;
+      @include transition(color, var(--black));
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--blue);
+      }
+    }
+  }
+  @media (max-width: 500px) {
+    padding-top: 120px;
+    padding-bottom: 121px;
+    &__list {
+      grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
+      gap: 20px;
+    }
+    &__item {
+      &:first-child {
+        min-height: inherit;
+        padding-right: 2px;
+        padding-bottom: 19px;
+      }
+      &:not(:first-child) {
+        padding: 20px;
+        border-radius: 10px;
+        &:nth-child(2) {
+          min-height: 275px;
+          padding-bottom: 19px;
+        }
+        &:not(:first-child):not(:nth-child(2)) {
+          min-height: 290px;
+        }
+        &:nth-child(3) {
+          .catalog__product {
+            &-desc {
+              padding: 6px 0 0 0;
+            }
+            &-count {
+              margin-bottom: 2px;
+            }
+          }
+        }
+        &:nth-child(5) {
+          min-height: 292px !important;
+          padding-bottom: 14px;
+          .catalog__product {
+            &-count {
+              margin-bottom: 1px;
+              font-size: 18px;
+            }
+          }
+        }
+        &::after {
+          top: 27px;
+          left: 20px;
+          font-size: 20px;
+        }
+      }
+    }
+    &__title {
+      max-width: 250px;
+      margin-bottom: 21px;
+      font-size: 30px;
+      line-height: 35px;
+    }
+    &__desc {
+      margin-bottom: 31px;
+      font-size: 15px;
+    }
+    &__product {
+      &-img {
+        &-1 {
+          top: -6px;
+        }
+        &-2 {
+          top: -10px;
+          left: 31px;
+          max-height: 193px;
+        }
+        &-3 {
+          top: -44px;
+          max-height: 107px;
+        }
+        &-4 {
+          top: -45px;
+          max-height: 124px;
+        }
+        &-5 {
+          top: -17px;
+          left: 22px;
+          max-height: 167px;
+        }
+      }
+      &-desc {
+        padding: 7px 0 0 0;
+      }
+      &-count {
+        margin-bottom: -1px;
+        font-size: 15px;
+        line-height: 133.69%;
+      }
+      &-name {
+        font-size: 20px;
+      }
+    }
+  }
+}

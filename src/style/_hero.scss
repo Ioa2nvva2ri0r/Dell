@@ -1,0 +1,206 @@
+.hero {
+  background-color: var(--grey-darkened);
+  &__container {
+    position: relative;
+    display: flex;
+  }
+  &__aside-left,
+  &__aside-right {
+    padding-top: 75px;
+    padding-bottom: 54px;
+  }
+  &__aside-left {
+    width: 73.5%;
+    padding-left: 15px;
+  }
+  &__aside-right {
+    position: relative;
+    overflow: hidden;
+    width: 26.5%;
+    background-color: var(--grey-light);
+  }
+  &__slogan {
+    position: absolute;
+    top: 97px;
+    left: 260px;
+  }
+  &__btn-scroll {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    left: -197px;
+    bottom: 20%;
+    padding: 0;
+    border: 0;
+    font-weight: 300;
+    line-height: 19px;
+    color: var(--grey-dark);
+    background-color: transparent;
+    transform: rotate(-90deg);
+    @include transition(color, var(--black));
+    &:focus {
+      outline: none;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--blue);
+    }
+    & svg {
+      margin-right: 21px;
+      transform: rotate(-270deg);
+    }
+  }
+  &__slider {
+    padding-right: 64px;
+    &-container {
+      position: relative;
+    }
+    &-btn {
+      @include reset(btn);
+      position: static;
+      @include block-size(106px, 23px);
+      @include transition(transform, translateX(0));
+      & svg {
+        @include block-size(inherit);
+      }
+      &::after {
+        content: none;
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        transform: translateX(10px);
+      }
+    }
+  }
+  &__slide {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    &-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+      padding-top: 74px;
+    }
+    &-subtitle,
+    &-title {
+      display: block;
+    }
+    &-title {
+      margin-bottom: 60px;
+      font-size: 50px;
+      font-weight: 400;
+      line-height: 59px;
+    }
+    &-subtitle {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 24px;
+      color: var(--grey-dark);
+    }
+    &-img {
+      @include picture(557px, 555px);
+      position: relative;
+      left: 3px;
+    }
+  }
+  &__box-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+    height: 100%;
+    padding: 0 40px 109px 40px;
+  }
+  &__desc {
+    margin: 0 0 102px 0;
+    max-width: 180px;
+    font-size: 25px;
+    line-height: 130%;
+  }
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include block-size(716px, 725px);
+    background-repeat: no-repeat;
+    z-index: 1;
+    background-image: url('../img/hero/2.png');
+  }
+  @media (max-width: 500px) {
+    &__container {
+      flex-direction: column;
+    }
+    &__aside-left,
+    &__aside-right {
+      width: 100%;
+      padding: 15px;
+    }
+    &__aside-right {
+      overflow: visible;
+    }
+    &__btn-scroll {
+      display: none;
+    }
+    &__slogan {
+      top: 18px;
+      left: 32px;
+      @include block-size(293px, 77px);
+    }
+    &__slider {
+      padding: 0;
+      &-btn {
+        position: absolute;
+        top: -28px;
+        right: -1px;
+        @include block-size(64px, 14px);
+      }
+    }
+    &__slide {
+      flex-direction: column;
+      &-content {
+        padding-top: 65px;
+        padding-bottom: 5px;
+      }
+      &-subtitle {
+        margin-bottom: 5px;
+        font-size: 15px;
+        line-height: 133.69%;
+      }
+      &-title {
+        max-width: 250px;
+        margin-bottom: 29px;
+        font-size: 30px;
+        line-height: 35px;
+      }
+      &-img {
+        @include picture(327px, 325px);
+        top: 5px;
+        left: -1px;
+      }
+    }
+    &__box-content {
+      justify-content: center;
+      min-height: 165px;
+      padding: 0;
+    }
+    &__desc {
+      max-width: 150px;
+      margin: 0;
+      font-size: 20px;
+    }
+    &__background {
+      @include block-size(252px, 166px);
+      top: 14px;
+      left: 32%;
+      background-image: url('../img/hero/375/2.png');
+    }
+  }
+}

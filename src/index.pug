@@ -1,0 +1,269 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Dell
+    //- Favicon
+    link(rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png")
+    link(rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png")
+    link(rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png")
+    link(rel="manifest" href="img/favicon/site.webmanifest")
+    link(rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5")
+    meta(name="msapplication-TileColor" content="#da532c")
+    meta(name="theme-color" content="#ffffff")
+    //- Normalize CSS
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css", integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==", crossorigin="anonymous" referrerpolicy="no-referrer")
+    //- Add Fonts "Roboto"
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap", rel="stylesheet")
+    //- Swiper-Slider
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css")
+    script(src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js")
+    //- Basic Styles
+    link(rel="stylesheet", href="style/main.min.css")
+    script(src="js/main.min.js", defer)
+  body
+
+    //- Mixins
+    mixin icon(id, width, height)
+      svg(width=width, height=height)
+        use(xlink:href=`img/sprite.svg#${id}`)
+    mixin usLink(content, cssClass='')
+      a(class=`us-link ${cssClass}`, href="#")
+        span
+          +icon('arrow', 12, 11)
+        = content
+    mixin socials(cssClass='')
+      ul.socials__list(class=`${cssClass}`)
+        //- Data socials
+        - var socials = ['facebook', 'whatsapp']
+        each name, index in socials
+          li.socials__item
+            a.socials(href=`https://www.${name}.com/`, target="_blank")
+              +icon(name, 38, 38)
+
+    header.header.container__inner
+
+      .header__nav-box
+        a.header__logo(href="/", aria-label="Логотип")
+          img(src="img/logo.svg")
+        nav.header__nav#menu
+          ul.header__nav-list#menu-list
+            //- Data nav
+            - var nav = [{desc: 'Главная', href: '/'}, {desc: 'Каталог', href: '#catalog'}, {desc: 'Новости', href: '#news'}, {desc: 'Наш АСЦ', href: '#advantage'}, {desc: 'Контакты', href: '#contacts'}]
+
+            each objLink in nav
+              li.header__nav-item
+                a.header__nav-link(href=`${objLink.href}`)= objLink.desc
+        button.header__btn-search(aria-label="Поиск")
+          +icon('search', 20, 20)
+      nav.header__menu
+        ul.header__menu-list
+          //- Data menu
+          - var menu = [{id: 'user', desc: 'Личный кабинет', icon: {w: 21, h:23} }, {id: 'signal', desc: 'Сигнал', icon: {w: 24, h:24} },{id: 'favorite', desc: 'Избранные' , icon: {w: 24, h:23} },{id: 'basket', desc: 'Корзина', icon: {w: 22, h:24} }, {id: 'burger', icon: {w: 18, h: 20} }]
+
+          each objLink in menu
+            li.header__menu-item(class=`header__menu-item-${objLink.id}`)
+              if objLink.id === 'burger'
+                button.header__menu-open#menu-open(aria-label="Открыть меню")
+                  - for(var i = 0; i < 3; i++)
+                    span
+              else
+                a(class='header__menu-link', href="#", aria-label=objLink.desc)
+                  +icon(objLink.id, objLink.icon.w, objLink.icon.h)
+                  if objLink.id === 'basket'
+                    span 3
+                if objLink.id === 'user'
+                  .header__user-box
+                    strong.header__user-name
+                      span.header__user-icon
+                        +icon(objLink.id, objLink.icon.w, objLink.icon.h)
+                      | Мария
+                    ul.header__user-listAction
+                      each link in ['Личный кабинет', 'История заказов', 'Персональные предложения', 'Выйти']
+                        li.header__user-itemAction
+                          a.header__user-linkAction(href="#")= link
+
+    main
+
+      section.hero
+        .hero__container.container__outer
+          .hero__aside-left
+            img.hero__slogan(src='img/hero/slogan.png' alt="DELL")
+            .hero__slider-container
+              .hero__slider.swiper
+                .swiper-wrapper
+                  - for(var i = 0; i < 5; i++)
+                    .hero__slide.swiper-slide
+                      .hero__slide-content
+                        a.hero__btn-scroll(href="#catalog")
+                          +icon('union', 25, 39)
+                          | Scroll to catalog
+                        span.hero__slide-subtitle Новое поступление
+                        strong.hero__slide-title Лучшие товары от компании Dell
+                        +usLink('Подробнее')
+                      picture
+                        source.hero__slide-img(srcset='img/hero/1.png')
+                        img.hero__slide-img(src='img/hero/1.png' alt="")
+                .swiper-pagination
+          .hero__aside-right
+              .hero__box-content
+                p.hero__desc Выгодное предложение от Dell
+                button.hero__slider-btn.swiper-button-next
+                  +icon('arrow-long', 106, 23)
+              .hero__background
+
+
+
+      section.catalog.container__inner#catalog
+        ul.catalog__list
+          //- Data products
+          - var products = [{}, {name: 'Ноутбуки', count: '105 товаров'}, {name: 'Персональные компьютеры', count: '65 товаров'}, {name: 'Cерверы', count: '13 товаров'}, {name: 'Dell EMC', count: '2345 товаров'}, {name: 'Запасные части к Dell EMC', count: '195 товаров'}]
+
+          each product, index in products
+            if index > 0
+              li.catalog__item
+                picture
+                  source.catalog__product-img(class=`catalog__product-img-${index}`, srcset=`img/catalog/${index}.png`)
+                  img.catalog__product-img(class=`catalog__product-img-${index}`, src=`img/catalog/${index}.png` alt="")
+                .catalog__product-desc
+                  strong.catalog__product-count= product.count
+                  a.catalog__product-name(href="#")= product.name
+            else
+              li.catalog__item
+                strong.catalog__title Каталог товаров от Dell
+                p.catalog__desc Наша компания является зарегистрированным и официальным партнером Dell в России.
+                +usLink('В каталог')
+
+      section.advantage#advantage
+        .advantage__container.container__outer
+          img.advantage__slogan(src='img/advantage/slogan.png' alt="best quality")
+          .advantage__content-container
+            .advantage__img-box
+              picture
+                source.advantage__img(srcset=`img/advantage/1.png`)
+                img.advantage__img(src=`img/advantage/1.png` alt="")
+            .advantage__content-box
+              .advantage__content
+                strong.advantage__content-title Наши преимущества
+                p.advantage__content-desc Оптимизация мощностей (расходов, социальных выплат и т.п.) позволили компании на 4,7% понизить цены по сравнению с конкурентами
+                +usLink('Оставить заявку')
+          .advantage__list-container.container__inner
+            ul.advantage__list
+              //- Data advantages
+              - var advantages = [{title: 'Самые выгодные и\u00A0низкие цены', desc: "В наличии широкий ассортимент, а также доступные цены на\u00A0ноутбуки\u00A0Dell", icon: 'card'}, {title: 'Авторизованный сервисный центр DELL', desc: "Сертифицированный сервисный центр по ремонту техники Dell в России и странах СНГ", icon: 'service'},{title: 'Высокий уровень технической экспертизы', desc: "Мы прошли аттестацию в виде тестирования, где показали высокий уровень знаний", icon: 'people'},{title: 'Официальный партнер DELL', desc: "Официальный поставщик продукции DELL в России и\u00A0странах СНГ", icon: 'box'}]
+
+              each advantage in advantages
+                li.advantage__card
+                  span.advantage__card-line
+                  .advantage__card-icon
+                    +icon(advantage.icon, 36, 36)
+                  strong.advantage__card-title= advantage.title
+                  p.advantage__card-desc= advantage.desc
+
+      section.news.container__inner#news
+        .news__content-box
+          .news__content
+            strong.news__content-title Последние новости
+            p.news__content-desc Вы можете посмотреть ещё больше интересных новостей и узнать о последних новинках, перейдя по кнопке
+          +usLink('Все новости', 'news__content-link')
+        ul.news__list
+          - for(var i = 0; i < 6; i++)
+            li.news__card
+              .news__card-background(style=`background-image: url('img/news/${i+1}.png')`)
+              .news__card-date
+                time(datetime="2023-07-11")
+                  span.day 11
+                  span.month июля
+              .news__card-content
+                strong.news__card-title GE использует технологии Dell
+                p.news__card-desc Вы можете посмотреть ещё больше интересных новостей
+                .news__card-linkBox
+                  a.news__card-link(href="#", aria-label="Подробнее")
+                    +icon('arrow', 12, 11)
+
+      section.contacts#contacts
+        .hero__container.container__outer
+          .contacts__container.container__inner
+            .contacts__box
+              strong.contacts__title Наши контакты
+              p.contacts__desc Dы можете связаться с нашим онлайн-консультантом
+              ul.contacts__list
+                //- Data contacts
+                - var contacts = [{id: 'location', title: "Адрес", contents: ['Москва, ул. 3-я Хорошевская, дом 2, строение 1'], icon: {w:38, h:38} }, {id: 'email', title: "E-mail", contents: ['dell_ru@gmail.com'], icon: {w: 36, h:36} }, {id: 'tel', title: "Телефон", contents: ['+7 495 737-06-01', '+7 495 737-06-01'],  icon: {w: 34, h:34} }]
+
+                each contact in contacts
+                  li.contacts__item
+                    +icon(contact.id, contact.icon.w, contact.icon.h)
+                    .contacts__content
+                      strong.contacts__subtitle= contact.title
+
+                      each content in contact.contents
+                        if contact.id === 'location'
+                          address= content
+                        else if contact.id === 'email'
+                          a(href=`mailto:${content}`)= content
+                        else if contact.id === 'tel'
+                          a(href=`tel:${content}`)= content
+              +socials()
+              .contacts__image
+            .contacts__form-box
+              strong.contacts__form-title Оставьте заявку
+              p.contacts__form-desc Оставьте свой номер, и мы перезвоним Вам.
+              form.contacts__form#form-contact
+                label.contacts__form-label(for="name")
+                  input.contacts__form-input(type="text", id="name", name="name", lang="ru", minLength=2, maxLength=20, required, data-excep='-', autoComplete='given-name', placeholder="Ваше имя")
+                  span.contacts__form-placeholder Ваше имя
+                label.contacts__form-label(for="tel")
+                  input.contacts__form-input(type="tel", id="tel", name="tel", required, inputMode='tel', autoComplete="tel", placeholder="Номер телефона")
+                  span.contacts__form-placeholder Номер телефона
+                label.contacts__form-label(for="comment")
+                  textarea.contacts__form-input(name="comment", id="comment", placeholder="Комментарий")
+                  span.contacts__form-placeholder Комментарий
+                button.contacts__form-btn.us-link#btn-submit(type="button")
+                  span
+                    +icon('arrow', 12, 11)
+                  | Заказать
+          img.contacts__slogan(src='img/contacts/slogan.png' alt="our contacts")
+
+    footer.footer.container__outer
+      .footer__container.container__inner
+        .footer__top
+          a.footer__logo(href="/", aria-label="Логотип")
+            img(src="img/logo.svg")
+          ul.footer__list
+            //- Data navigate footer
+            - var navFooter = [{title: 'Каталог', links: ['Ноутбуки', 'Персональные компьютеры', 'Серверы', 'Dell EMC', 'Запасные части к Dell EMC']}, {title: 'Личный кабинет', links: ['Профиль', 'История заказов', 'SMS-уведомления', 'Избранное', 'Сравнение товаров']}, {title: 'Помощь', links: ['Доставка и оплата', 'Контакты', 'FAQ', 'Наш АСЦ']}]
+
+            each item in navFooter
+              li.footer__item
+                strong.footer__nav-title= item.title
+                nav.footer__nav
+                  ul.footer__nav-list
+
+                    each link in item.links
+                      li.footer__nav-item
+                        a.footer__nav-link(href="#")= link
+        .footer__bottom
+          ul.footer__contacts-list
+            //- Data contacts
+            - var contacts = [{id: 'location', title: "Адрес", contents: ['Москва, ул. 3-я Хорошевская, дом 2, строение 1'], icon: {w:38, h:38} }, {id: 'tel', title: "Телефон", contents: ['+7 495 737-06-01', '+7 495 737-06-01'],  icon: {w: 34, h:34} }, {id: 'email', title: "E-mail", contents: ['dell_ru@gmail.com'], icon: {w: 36, h:36} }]
+
+            each contact in contacts
+              li.footer__contacts-item
+                strong.footer__contacts-title= contact.title
+                .footer__contacts-desc
+
+                  each content in contact.contents
+                    if contact.id === 'location'
+                      address= content
+                    else if contact.id === 'email'
+                      a(href=`mailto:${content}`)= content
+                    else if contact.id === 'tel'
+                      a(href=`tel:${content}`)= content
+          +socials('footer__socials')
+      img.footer__slogan(src='img/footer/slogan.png' alt="DELL")
+

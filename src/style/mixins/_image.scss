@@ -1,0 +1,15 @@
+@mixin picture($width: none, $height: none) {
+  @if $height == none {
+    @if $width != none {
+      width: $width;
+      height: $width;
+    }
+  }
+  @if $height != none {
+    width: $width;
+    height: $height;
+  }
+  object-fit: cover;
+  object-position: center;
+  vertical-align: bottom;
+}

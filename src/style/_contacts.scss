@@ -1,0 +1,317 @@
+.contacts {
+  position: relative;
+  background-image: linear-gradient(to top, var(--grey-darkened) 66%, #0000 0%);
+  &__box,
+  &__form-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  &__title,
+  &__form-title,
+  &__desc,
+  &__form-desc {
+    max-width: 420px;
+  }
+  &__title,
+  &__form-title {
+    margin-bottom: 18px;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 50px;
+  }
+  &__desc,
+  &__form-desc {
+    line-height: 150%;
+  }
+  &__container {
+    position: relative;
+    display: flex;
+    z-index: 2;
+    padding-bottom: 180px;
+  }
+  &__box {
+    padding: 100px;
+    border-radius: 20px 0 0 20px;
+    background-color: var(--grey-light);
+  }
+  &__desc {
+    margin: 0 0 49px 0;
+    color: var(--grey-dark);
+  }
+  &__list {
+    @include reset(li);
+    width: 100%;
+    max-width: 415px;
+    padding-bottom: 59px;
+  }
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    & svg {
+      display: block;
+      min-width: 38px;
+      margin-right: 18px;
+    }
+    &:first-child {
+      margin-bottom: 47px;
+    }
+    &:nth-child(2) {
+      margin-bottom: 74px;
+    }
+  }
+  &__subtitle {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--grey-dark);
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 360px;
+    padding-top: 5px;
+    & a {
+      @include reset(link);
+      @include transition(color);
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--blue);
+      }
+    }
+    & a,
+    & address {
+      font-size: 22px;
+      line-height: 150%;
+      color: var(--black);
+    }
+    & a:not(:first-child):not(:last-child) {
+      margin-bottom: 1px;
+    }
+  }
+  &__image {
+    position: absolute;
+    top: 143px;
+    right: 50%;
+    width: 291px;
+    height: 591px;
+    background-image: url('../img/contacts/1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateX(29%);
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 435px;
+    background-color: inherit;
+    &-box {
+      padding: 100px 73px 102px 130px;
+      border-radius: 0 20px 20px 0;
+      background-color: var(--black);
+    }
+    &-title,
+    &-desc,
+    &-btn {
+      color: var(--white);
+    }
+    &-desc {
+      margin: 0 0 67px 0;
+    }
+    &-label {
+      position: relative;
+      cursor: pointer;
+      width: inherit;
+      max-width: inherit;
+      background-color: inherit;
+      margin-bottom: 52px;
+      &:first-child {
+        & span {
+          left: 15px;
+        }
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        & span {
+          color: var(--blue);
+        }
+        & input,
+        & textarea {
+          border-color: var(--blue);
+        }
+      }
+    }
+    &-placeholder,
+    &-input {
+      color: var(--grey-darkened);
+    }
+    &-placeholder {
+      position: absolute;
+      top: -11px;
+      left: 19px;
+      padding: 0 8px;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 24px;
+      background-color: inherit;
+      @include transition(color);
+    }
+    &-input {
+      width: inherit;
+      min-height: 60px;
+      background-color: transparent;
+      border: 1.5px solid rgba(242, 242, 242, 0.5);
+      border-radius: 20px;
+      padding: 15px;
+      @include transition(border-color);
+      &:not(input) {
+        min-width: 100px;
+        max-width: inherit;
+        min-height: 145px;
+        max-height: 200px;
+        margin-bottom: 3px;
+      }
+      &::placeholder {
+        color: transparent;
+      }
+      &:focus {
+        outline: none;
+        background-color: transparent;
+        border-color: var(--blue);
+        & + span {
+          color: var(--blue);
+        }
+      }
+      &:-webkit-autofill {
+        -webkit-text-fill-color: var(--grey-darkened);
+        -webkit-box-shadow: 0 0 0px 1000px var(--black) inset;
+      }
+    }
+    &-btn {
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  &__slogan {
+    position: absolute;
+    bottom: 51px;
+    left: 10px;
+    z-index: 1;
+    height: 425px;
+  }
+  @media (max-width: 500px) {
+    background-image: none;
+    &__box,
+    &__form-box {
+      border-radius: 0;
+    }
+    &__desc,
+    &__form-desc,
+    &__form-title,
+    &__title {
+      max-width: 277px;
+    }
+    &__title,
+    &__form-title {
+      font-size: 30px;
+      margin-bottom: 17px;
+    }
+    &__desc,
+    &__form-desc {
+      font-size: 15px;
+    }
+    &__container {
+      flex-direction: column;
+      padding: 0;
+    }
+    &__box {
+      padding: 101px 30px 57px 30px;
+    }
+    &__desc {
+      margin-bottom: 30px;
+    }
+    &__list {
+      padding-bottom: 30px;
+    }
+    &__item {
+      & svg {
+        min-width: 19px;
+        width: 19px;
+        margin-right: 8px;
+      }
+      &:first-child {
+        margin-bottom: 20px;
+      }
+      &:nth-child(2) {
+        margin-bottom: 19px;
+      }
+    }
+    &__subtitle {
+      margin-bottom: 0;
+      font-size: 15px;
+      line-height: 133%;
+    }
+    &__content {
+      max-width: 285px;
+      padding-top: 10px;
+      & a,
+      & address {
+        font-size: 18px;
+      }
+    }
+    &__image {
+      top: 50%;
+      right: 48px;
+      @include block-size(127px, 253px);
+      transform: translate(0, -70%) rotate(15deg);
+    }
+    &__form {
+      padding-right: 3px;
+      &-box {
+        padding: 60px 27px 59px 30px;
+      }
+      &-title {
+        line-height: 35px;
+      }
+      &-desc {
+        max-width: initial;
+        margin-bottom: 48px;
+      }
+      &-label {
+        margin-bottom: 40px;
+        &:nth-last-child(2) {
+          margin-bottom: 28px;
+        }
+      }
+      &-placeholder {
+        font-size: 15px;
+      }
+      &-input {
+        min-height: 40px;
+        padding: 10px;
+        border-radius: 10px;
+        &:not(input) {
+          min-height: 81px;
+          max-height: 150px;
+          margin-bottom: 0;
+        }
+      }
+    }
+    &__slogan {
+      display: none;
+    }
+  }
+}

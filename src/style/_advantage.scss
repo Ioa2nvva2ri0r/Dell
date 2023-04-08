@@ -1,0 +1,259 @@
+.advantage {
+  padding: 87px 15px 46px 15px;
+  background-color: var(--grey-darkened);
+  &__container {
+    position: relative;
+  }
+  &__content-container,
+  &__card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__slogan {
+    position: absolute;
+    top: 76px;
+    left: -6px;
+  }
+  &__img {
+    &-box {
+      position: relative;
+      @include block-size(100%, 492px);
+    }
+    @include picture(874px, 100%);
+    position: absolute;
+    top: -1px;
+    right: -99px;
+    z-index: 1;
+  }
+  &__content {
+    max-width: 520px;
+    &,
+    &-box {
+      width: 100%;
+    }
+    &-box {
+      position: relative;
+      z-index: 2;
+      padding: 0 0 36px 20px;
+    }
+    &-container {
+      padding-bottom: 46px;
+    }
+    &-title {
+      display: block;
+      margin-bottom: 37px;
+      font-size: 50px;
+      font-weight: 400;
+      line-height: 100%;
+    }
+    &-desc {
+      margin: 0 0 41px 0;
+      font-size: 18px;
+      line-height: 150%;
+      color: var(--grey-dark);
+    }
+  }
+  &__list {
+    @include reset(li);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(329px, 1fr));
+    gap: 27px;
+    margin: 0 auto;
+  }
+  &__card {
+    position: relative;
+    border-radius: 20px;
+    padding: 31px 25px 35px 30px;
+    background-color: var(--black);
+    &:nth-child(1),
+    &:nth-child(3) {
+      .advantage__card {
+        &-title {
+          letter-spacing: 0.2px;
+          &::first-line {
+            letter-spacing: -0.25px;
+          }
+        }
+      }
+    }
+    &:nth-child(4) {
+      & strong {
+        letter-spacing: -0.2px;
+      }
+    }
+    &-line {
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include block-size(144px, 92px);
+      background-image: url('../img/advantage/line-1.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &-icon {
+      @include block-size(70px);
+      margin-bottom: 26px;
+      border-radius: 10px;
+      background-color: #343a41;
+    }
+    &-title,
+    &-desc {
+      font-family: 'Euclid Circular A', sans-serif;
+    }
+    &-title {
+      display: block;
+      margin-bottom: 13px;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 28px;
+      color: var(--white);
+    }
+    &-desc {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      letter-spacing: 0.6px;
+      color: var(--grey-dark);
+    }
+  }
+  @media (max-width: 500px) {
+    padding-top: 101px;
+    padding-bottom: 120px;
+    &__slogan {
+      top: 272px;
+      left: 0;
+      height: 121px;
+    }
+    &__content {
+      &-container {
+        flex-direction: column-reverse;
+        padding: 0;
+      }
+      &-box {
+        padding: 0;
+      }
+      &-title {
+        margin-bottom: 21px;
+        font-size: 30px;
+        line-height: 50px;
+      }
+      &-desc {
+        margin-bottom: 32px;
+        padding-right: 10px;
+        font-size: 15px;
+      }
+    }
+    &__img {
+      top: -52px;
+      right: -61px;
+      width: 100%;
+      &-box {
+        height: 186px;
+      }
+    }
+    &__list {
+      grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
+      gap: 19px;
+      &-container {
+        margin-top: -8px;
+        padding: 0;
+      }
+    }
+    &__card {
+      padding: 15px 15px 14px 15px;
+      border-radius: 10px;
+      &:first-child {
+        .advantage__card {
+          &-title {
+            text-transform: lowercase;
+            max-width: 210px;
+            margin-bottom: 9px;
+            &::first-letter {
+              text-transform: uppercase;
+            }
+            &::first-line {
+              letter-spacing: -0.05px;
+            }
+            &::before {
+              content: 'У нас ';
+            }
+          }
+          &-desc {
+            max-width: 270px;
+          }
+        }
+      }
+      &:nth-child(2) {
+        .advantage__card-title {
+          max-width: 260px;
+          &::first-line {
+            letter-spacing: -0.1px;
+          }
+        }
+      }
+      &:nth-child(3) {
+        padding: 17px 15px 15px 15px;
+        .advantage__card {
+          &-icon {
+            margin-bottom: 15px;
+          }
+          &-title::first-line {
+            letter-spacing: -0.2px;
+          }
+        }
+      }
+      &:nth-child(4) {
+        padding: 15px 15px 11px 15px;
+        .advantage__card {
+          &-icon {
+            margin-bottom: 18px;
+          }
+          &-title {
+            margin-bottom: 13px;
+            font-size: 0;
+            line-height: 19px;
+            letter-spacing: 0;
+            &::first-line {
+              letter-spacing: -0.35px;
+            }
+            &::before {
+              font-size: 18px;
+              line-height: 100%;
+              content: 'Мы являемся официальным партнером DELL';
+            }
+          }
+          &-desc {
+            font-size: 0;
+            line-height: 16px;
+            &::first-line {
+              letter-spacing: 0.4px;
+            }
+            &::before {
+              font-size: 16px;
+              line-height: 14px;
+              content: 'Мы лучший официальный поставщик продукции DELL в\00A0России и\00A0странах\00A0СНГ';
+            }
+          }
+        }
+      }
+      &-line {
+        @include block-size(121px, 67px);
+        background-image: url('../img/advantage/line-2.svg');
+      }
+      &-icon {
+        @include block-size(50px);
+        margin-bottom: 17px;
+        & svg {
+          @include block-size(30px);
+        }
+      }
+      &-title {
+        margin-bottom: 10px;
+        font-size: 18px;
+        line-height: 23px;
+      }
+    }
+  }
+}
