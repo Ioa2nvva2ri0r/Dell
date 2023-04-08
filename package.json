@@ -1,6 +1,7 @@
 {
-  "name": "high_pass",
+  "name": "dell",
   "private": true,
+  "homepage": "https://ioa2nvva2ri0r.github.io/Dell/",
   "scripts": {
     "start": "gulp dev",
     "build": "gulp build",
